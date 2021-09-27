@@ -13,9 +13,9 @@ Qr600 = 2.099
 Qr800 = 1.723
 
 x = [100, 200, 400, 600, 800] # weerstanden in Ohm
-sx = None
+sx = [1, 2, 4, 6, 8]
 y = [Qr100, Qr200, Qr400, Qr600, Qr800] # Q waardes
-sy = None
+sy = 5 * [0.2]
 
 #Curve die we willen fitten
 def curve(params, x):
@@ -31,21 +31,23 @@ for i in range(len(parameters)):
     print("{} +- {}".format(parameters[i], onzekerheden[i]))
 
 # Coordinaten van curve bepalen
-curve_x = np.linspace(100, 1000, 1000)
+curve_x = np.linspace(0, 1000, 1000)
 curve_y = curve(parameters, curve_x)
 curve_theorie = [1/(x+162.015+43.822) * np.sqrt(1.2229/(0.329*10**-6)) for x in curve_x]
+
+# TODO: Onzekerheden toevoegen aan de metingen
 
 # Maak plot en laat zien
 plt.errorbar(x, y, sy, sx, fmt='.', color='black', label='Metingen') 
 plt.plot(curve_x, curve_y, color='red', label='Fit: $Q=\\frac{k}{R + R_C + R_L}$')
-plt.plot(curve_x, curve_theorie, color='black', label='Theoretisch verband')
+plt.plot(curve_x, curve_theorie, color='black', label='Theoretisch verband: $Q=\\frac{1}{R + R_C + R_L} \\cdot \\sqrt{\\frac{L}{C}}$')
 # plt.axhline(y=parameters[0]/math.sqrt(2), color='black', linestyle='dotted', label='$\\frac{v_{max}}{\\sqrt{2}}$')
 
 plt.grid(True)
-#plt.xlim(100, 1000)
-#plt.ylim(0, 0.5)   
-plt.xlabel('$f$ (Hz)')
-plt.ylabel('$v$ (V)')
+plt.xlim(0, 1000)
+plt.ylim(0, 10)   
+plt.xlabel('$R$ ($\\Omega$)')
+plt.ylabel('$Q$')
 plt.legend(loc="upper right")
 
 plt.show()
