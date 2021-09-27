@@ -4,12 +4,13 @@ import matplotlib.pyplot as plt
 from fitcode import curve_fit
 import math
 
-csv = pd.read_csv("data5-1.csv")
+csv = pd.read_csv("data-5-2-r600.csv")
 
 frequency = csv['Frequentie (Hz)'].values.tolist()
 voltage = csv['Spanning (V)'].values.tolist()
 phase = csv['Fase (degrees)'].values.tolist()
 
+# -----
 
 x = frequency # frequenties in Hz
 sx = None
@@ -21,7 +22,7 @@ def curve(params, x):
     return params[0]/(np.sqrt(1+(params[1]**2)*((x/params[2])-(params[2]/x))**2))
 
 # Voer optimalisatie uit (oftewel: het fitten)
-gok = [0.125, 2, 245] # maxAmpl, Q, f0
+gok = [0.125, 3, 245] # maxAmpl, Q, f0
 parameters, onzekerheden, check = curve_fit(curve, x, y, sx, sy, gok)
 if not check:
     print("FOUTMELDING!!")
@@ -49,7 +50,9 @@ plt.legend(loc="upper right")
 
 plt.show()
 
-# amplMax = 0.327 # (V)
+# -----
+
+# amplMax = 0.125 # (V)
 # amplDelta = amplMax * (math.sqrt(2)/2)
 # print(amplDelta)
 # freqDelta1 = 205 # (Hz)
@@ -58,7 +61,7 @@ plt.show()
 # plt.errorbar(frequency, voltage, fmt='.', color='black', label='Metingen') 
 # plt.axvline(x=250.0, color='black', linestyle='dashed', label='$f_0 =$ 250.0 Hz')
 
-# plt.axhline(y=amplDelta, color='black', linestyle='dotted', label='$\\frac{v_{max}}{\\sqrt{2}} =$ 0.231 V')
+# plt.axhline(y=amplDelta, color='black', linestyle='dotted', label='$\\frac{v_{max}}{\\sqrt{2}} =$ 0.231 Hz')
 # plt.axvline(x=freqDelta1, color='black', linestyle='dotted', label='$f_1 =$ 205 Hz')
 # plt.axvline(x=freqDelta2, color='black', linestyle='dotted', label='$f_2 =$ 305 Hz')
 
