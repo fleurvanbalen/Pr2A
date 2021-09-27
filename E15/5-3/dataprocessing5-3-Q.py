@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt
 from fitcode import curve_fit
 
 # Methode Delta frequentie
-Qr100 = 4.565
-Qr200 = 3.644
-Qr400 = 2.676
-Qr600 = 2.099
-Qr800 = 1.723
+Qc01 = 3.214
+Qc02 = 2.721
+Qc03 = 2.405
+Qc04 = 2.181
+Qc05 = 2.035
 
-x = [100, 200, 400, 600, 800] # weerstanden in Ohm
+x = [0.1, 0.2, 0.3, 0.4, 0.5] # Capaciteiten in !micro!Farrad
 sx = None
-y = [Qr100, Qr200, Qr400, Qr600, Qr800] # Q waardes
+y = [Qc01, Qc02, Qc03, Qc04, Qc05] # Q waardes
 sy = None
 
 #Curve die we willen fitten
@@ -22,7 +22,7 @@ def curve(params, x):
     return params[0]/(x+params[1])
 
 # Voer optimalisatie uit (oftewel: het fitten)
-gok = [60, 200] # k, (Rl + Rc)
+gok = [2000] # k'
 parameters, onzekerheden, check = curve_fit(curve, x, y, sx, sy, gok)
 if not check:
     print("FOUTMELDING!!")
