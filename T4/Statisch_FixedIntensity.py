@@ -20,8 +20,6 @@ sl_2 = np.array(4 * [0.05]) * 10**-2
 B_2 = 11.1 * I_2 * 10**(-3)                                 # Berekening van het B-veld in tesla (T)
 sB_2 = B_2 * (sI_2/I_2)**2
 
-print(B_2, '+-', sB_2)
-
 v_2 = Delta_theta_2 / (B_2*l_2)
 sv_2 = v_2 * ( (sDelta_theta_2/Delta_theta_2)**2 + (sB_2/B_2)**2 + (sl_2/l_2)**2 )
 # De fout komt hoger uit sinds de hoek met minimale hoek theta veel moeilijker is te bepalen dan 2 graden
