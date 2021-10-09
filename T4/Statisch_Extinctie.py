@@ -4,13 +4,16 @@ from fitcode import curve_fit
 
 ### --------------------------------
 ### SF-59 Meting: "Extinction"
+### Gewogen gemiddelde: 29   +- 9 (afleesfout 4 graden)
+### Gewogen gemiddelde: 28.9 +- 2.1 (afleesfout 2 graden)
+### m.b.v. fitten:      29   +- 5 
 ### --------------------------------
 
 I_1 = np.array([0.98,    1.96,   3.94,   5.28])             # Stroom in ampere (A)
-sI_1 = np.array([0.0128, 0.0226, 0.0694, 0.0828])           # Fout vd stroom
+sI_1 = np.array([0.0393, 0.0496, 0.0694, 0.0828])           # Fout vd stroom
 
 Delta_theta_1 = np.array([5, 5, 6, 10]) * (2/360) * np.pi   # Verschil van de hoek tot de beginpositie in radialen (rad)
-sDelta_theta_1 = np.array(4*[4]) * (2/360) * np.pi          # afleesfout is 2 graden, delta = begin - eind dus fout delta = 2 * 2 = 4 graden
+sDelta_theta_1 = np.array(4*[np.sqrt(2*(4**2))])*(2/360)*np.pi  # afleesfout is 4 graden, delta = begin - eind dus fout delta = sqrt(4^2+4^2) graden
 
 l_1 = np.array(4 * [10.2]) * 10**-2                         # Lengte van staaf in meter (m)
 sl_1 = np.array(4 * [0.05]) * 10**-2
@@ -20,12 +23,21 @@ sB_1 = B_1 * (sI_1/I_1)**2
 
 v_1 = Delta_theta_1 / (B_1*l_1)
 sv_1 = v_1 * ( (sDelta_theta_1/Delta_theta_1)**2 + (sB_1/B_1)**2 + (sl_1/l_1)**2 )
-# De fout komt hoger uit sinds de hoek met minimale hoek theta veel moeilijker is te bepalen dan 2 graden
+# De fout komt eigenlijk hoger uit sinds de hoek met minimale intensiteit veel moeilijker is te bepalen dan 2 graden, dus als we voor het aflezen een fout van 4 nemen:
 
 print("")
 print("De v van SF-59 uit meting 1:")
 print(v_1, '+-', sv_1)
-print("Gemiddeld:") #TODO
+
+G = 1/(sv_1)**2
+v_gewogen = 0
+gewichten_tot = 0
+for i in range(4):
+    v_gewogen += G[i]*v_1[i]
+    gewichten_tot += G[i]
+v_gemiddeld = v_gewogen/gewichten_tot
+sv_gemiddeld = 1/(np.sqrt(gewichten_tot))
+print("Gemiddeld:", v_gemiddeld, '+-', sv_gemiddeld)
 print("")
 
 ## Fitten van de waardes
@@ -61,52 +73,8 @@ plt.plot(curve_x, curve_y, color='red', label='Fit: $\\theta= v B \\ell$')
 
 plt.grid(True)
 plt.xlim(0, 0.07)
-plt.ylim(0, 0.3)   
+plt.ylim(-0.1, 0.30)   
 plt.xlabel('$B$ (T)')
 plt.ylabel('$\\theta$ (rad)')
 plt.legend(loc="upper left")
 plt.show()
-
-### SF-59 Meting: "Returning to Fixed Intensity Value"
-I_2 = np.array([0.97, 1.97, 3.93, 5.9])                     # Stroom in ampere (A)
-Delta_theta_2 = np.array([1,2,5,7]) * (2/360) * np.pi
-
-B_2 = 11.1 * I_2 * 10**(-3)
-l_2 = np.array([10.2, 10.2, 10.2, 10.2]) * 10**-2
-
-v_2 = Delta_theta_2 / (B_2*l_2)
-
-print("v van SF-59 uit de returning meting is gelijk aan:",v_2)
-
-
-### Metingen: "Dynamische meetmethode"
-#Perspex
-I_3 = 1.5
-DU_RMS = 4.62
-DU_MEAN = 434 *10**-3
-Delta_theta_3 = (1/2) * (DU_MEAN * 10**(-2)) / (98*10**(-3))
-
-B_3 = 11.1 * I_3 * 10**(-3)
-l_3 = 10.2 * 10**-2
-
-v_3 = Delta_theta_3 / (B_3*l_3)
-
-print("v uit meeting 3 is gelijk aan:",v_3)
-
-I_3b = 1.506
-DU_RMS_3b = 52 *10**-3
-DU_MEAN_3b = 47 *10 **-3
-Multiplier = 5 * 10 * 50
-Delta_theta_3b = (1/2) * (DU_MEAN_3b) / (98*10**(-3)*Multiplier)
-
-B_3b = 11.1 * I_3b * 10**(-3)
-l_3b = 10.2 * 10**-2
-
-v_3b = Delta_theta_3b / (B_3b*l_3b)
-
-print("v uit meeting 3b, Persplex, is gelijk aan:",v_3b)
-
-#Fu-Si
-
-
-#Perspex
