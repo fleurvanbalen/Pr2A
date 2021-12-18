@@ -10,8 +10,8 @@ Ial = csv['Al'].values.tolist()
 
 plt.plot(golflengte, Inofilter)
 plt.errorbar(golflengte, Inofilter, fmt='.', color='black', label='Metingen') 
-plt.plot(golflengte, Icu)
-plt.plot(golflengte, Ial)
+plt.plot(golflengte, Icu, label='Koper')
+plt.plot(golflengte, Ial, label='Aluminium')
 # plt.axvline(x=475, color='red', linestyle='dotted', label='Start en eind plateau')
 # plt.axvline(x=675, color='red', linestyle='dotted')
 
