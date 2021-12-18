@@ -39,11 +39,11 @@ T2_cf = TM(nlpm_lin,cf_T2[0],cf_T2[1]) #With found values: Continious T2
 
 #Priting found values in curvefit
 print("Gevonden waarden:")
-print("a_T_1 =", cf_T1[0])
-print("n_T_1 =", cf_T1[1])
+print("a_T_1_Cu =", cf_T1[0])
+print("n_T_1_Cu =", cf_T1[1])
 print()
-print("a_T_2 =", cf_T2[0])
-print("n_T_2 =", cf_T2[1])
+print("a_T_2_Al =", cf_T2[0])
+print("n_T_2_Al =", cf_T2[1])
 
 ## Graphs
 
@@ -53,10 +53,10 @@ d = b
 
 plt.close() #Closing the previous opend plot
 plt.rcParams['figure.dpi'] = 100
-plt.plot(nlpm[a:b],T_1[a:b],".",label = "Transmissie Al") #Plotting RAW data T1
-plt.plot(nlpm[a:b],T_2[a:b],".",label = "Transmissie Cu") #Plotting RAW data T2
-plt.plot(nlpm_lin,T1_cf, label = 'FIT $T_{Al}$: $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T1
-plt.plot(nlpm_lin,T2_cf, label = 'FIT $T_{Cu}$ : $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T2
+plt.plot(nlpm[a:b],T_1[a:b],".",label = "Transmissie Cu") #Plotting RAW data T1
+plt.plot(nlpm[a:b],T_2[a:b],".",label = "Transmissie Al") #Plotting RAW data T2
+plt.plot(nlpm_lin,T1_cf, label = 'FIT $T_{Cu}$: $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T1
+plt.plot(nlpm_lin,T2_cf, label = 'FIT $T_{Al}$ : $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T2
 plt.xlabel(" $\\lambda \\cdot n$ (in pm)") #Plotting the x-axis
 plt.ylabel("T (in %)") #Plotting the y-axis
 plt.legend()
