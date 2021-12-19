@@ -64,7 +64,7 @@ def function_el(l):
 
 nlpm_error = function_el(golflengte)
 
-print(nlpm_error)
+
 ## Curvefit
 
 nlpm_lin = np.linspace(50,80)
@@ -81,13 +81,27 @@ cf_T2, covariance_T2 = curve_fit(TM, nlpm[a:b] ,T_2[a:b]) #Fitting T2 to TM
 T1_cf = TM(nlpm_lin,cf_T1[0],cf_T1[1]) #With found values: Continious T1
 T2_cf = TM(nlpm_lin,cf_T2[0],cf_T2[1]) #With found values: Continious T2
 
+e1_alles = np.sqrt(abs(np.diag(covariance_T1)))
+e1_a = e1_alles[0]
+e1_n = e1_alles[1]
+
+e2_alles = np.sqrt(abs(np.diag(covariance_T2)))
+e2_a = e2_alles[0]
+e2_n = e2_alles[1]
+
+
+
 #Priting found values in curvefit
 print("Gevonden waarden:")
 print("a_T_1_Cu =", cf_T1[0])
+print("ea_T_1_Cu =", e1_a)
 print("n_T_1_Cu =", cf_T1[1])
+print("en_T_1_Cu =",e1_n)
 print()
 print("a_T_2_Al =", cf_T2[0])
+print("ea_T_2_Al =", e2_a)
 print("n_T_2_Al =", cf_T2[1])
+print("en_T_2_Al =", e2_n)
 
 ## Graphs
 
