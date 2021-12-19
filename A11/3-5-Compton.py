@@ -79,7 +79,7 @@ def function_eDl(el1,el2):
 def function_el2(n,T):
     el2 = 2*np.sqrt(n/T)
     return el2
-
+"""
 el1_Cu = function_el2(Cu_R1,420)
 el2_Cu = function_el2(Cu_R2[1],420)
 
@@ -88,8 +88,22 @@ el2_Al = function_el2(Al_R2[1],420)
 
 eDl_Cu = function_eDl(el1_Cu,el2_Cu)
 eDl_Al = function_eDl(el1_Al,el2_Al)
+"""
 
 #hoe zit het met die picometer?
+###Test omgeving
+
+def function_el(a,ea,n,en,R0,R1):
+    R = Bg = 0.157
+    T = 420
+    eR = 2*np.sqrt(R/T)
+    eR0 = 2*np.sqrt(R0/T)
+    eR1 = 2*np.sqrt(R1/T)
+    el = np.sqrt( (100*np.log(R0-R)**(1/n-1)/(a**(1/n)*(R0-R)*n))**2 * eR0**2 + (100*(np.log(R0-R)-np.log(R1-R))**(1/n-1)*(1/(R1-R)-1/(R0-R))/(a**(1/n)*n))**2 * eR**2 + (-100*np.log(R1-R)**(1/n-1)/(a**(1/n)*(R1-R)*n))**2 * eR1**2 + (100*(np.log(R0-R)-np.log(R1-R))**(1/n)/(a**(1/n+1)*-n))**2 * (ea)**2 + (100*((np.log(R0-R)-np.log(R1-R))/a)**(1/n)*np.log((np.log(R0-R)-np.log(R1-R))/a))**2 * en**2)
+    return el
+
+
+
 ## Printing the found values
 
 
@@ -104,16 +118,16 @@ eDl_Al = function_eDl(el1_Al,el2_Al)
 
 
 print("Values Cu:")
-print("Dlambda  = %1.03f \u00B1 %1.03f pm" %(Dlambda_Cu,eDl_Cu))
-print("Lambda_before  = %1.03f \u00B1 %1.03f pm" %(lambda_Cu_before,el1_Cu))
-print("Lambda_after  = %1.03f \u00B1 %1.03f pm" %(lambda_Cu_after,el2_Cu))
+print("Dlambda  = %1.00f \u00B1 %1.00f pm" %(Dlambda_Cu,eDl_Cu))
+print("Lambda_before  = %1.00f \u00B1 %1.00f pm" %(lambda_Cu_before,el1_Cu))
+print("Lambda_after  = %1.00f \u00B1 %1.00f pm" %(lambda_Cu_after,el2_Cu))
 
 print()
 
 print("Values Al:")
-print("Dlambda  = %1.03f \u00B1 %1.03f pm" %(Dlambda_Al,eDl_Al))
-print("Lambda_before  = %1.03f \u00B1 %1.03f pm" %(lambda_Al_before,el1_Al))
-print("Lambda_after  = %1.03f \u00B1 %1.03f pm" %(lambda_Al_after,el2_Al))
+print("Dlambda  = %1.00f \u00B1 %1.00f pm" %(Dlambda_Al,eDl_Al))
+print("Lambda_before  = %1.00f \u00B1 %1.00f pm" %(lambda_Al_before,el1_Al))
+print("Lambda_after  = %1.00f \u00B1 %1.00f pm" %(lambda_Al_after,el2_Al))
 
 print()
 
