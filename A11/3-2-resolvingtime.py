@@ -53,7 +53,7 @@ plt.plot(I_lin,R_cf, color='black', linestyle='dotted', label = 'FIT: $R = a \cd
 plt.plot(I_lin,r_cf, color='red', label = 'FIT: $r = \\frac{R}{1+R \cdot T}$')
 #plt.plot(I_lin,r_cf2, label = 'FIT: Non linear')
 plt.xlabel("$I$ (in A)")
-plt.ylabel("Intensiteit (in counts/s)")
+plt.ylabel("$R$ en $r$ (in counts/s)")
 plt.legend()
 plt.grid()
 plt.show()
