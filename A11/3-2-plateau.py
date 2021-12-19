@@ -15,8 +15,8 @@ plt.axvline(x=675, color='red', linestyle='dotted')
 plt.grid(True)
 plt.xlim(275, 700)
 plt.ylim(0, 3000)
-plt.xlabel('Spanning over de GM-buis $U_{GM}$ (in V)')
-plt.ylabel('Intensiteit (in counts/s)')
+plt.xlabel('$U_{GM}$ (in V)') # Spanning over de GM-buis
+plt.ylabel('$R$ (in counts/s)')
 plt.legend(loc="upper left")
 
 plt.show()
