@@ -59,6 +59,7 @@ lambda_Al_before = Lambda(a_T_2_Al, n_T_2_Al,R0,Bg,Al_R1)
 lambda_Al_after = Lambda(a_T_2_Al, n_T_2_Al,R0,Bg,Al_R2[1])
 
 Dlambda_th = theory(145*np.pi/180)
+print(Dlambda_th*10**(12))
 
 ## Calculating the errors
 

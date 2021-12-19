@@ -114,10 +114,12 @@ plt.close() #Closing the previous opend plot
 plt.rcParams['figure.dpi'] = 100
 plt.errorbar(nlpm[a:b],T_1[a:b],T_1_error[a:b],nlpm_error[a:b],fmt='.', alpha = 0.5, ecolor = 'grey',label = "Transmissie Cu") #Plotting RAW data T1
 plt.errorbar(nlpm[a:b],T_2[a:b],T_2_error[a:b],nlpm_error[a:b], fmt='.',alpha = 0.5, ecolor = 'grey',label = "Transmissie Al") #Plotting RAW data T2
-plt.plot(nlpm_lin,T1_cf, label = 'FIT $T_{Cu}$: $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T1
-plt.plot(nlpm_lin,T2_cf, label = 'FIT $T_{Al}$ : $e^{-a(\\frac{l}{100})^n}$') #Plotting curvefit T2
+plt.plot(nlpm_lin,T1_cf, label = 'FIT $T_{Cu}$: $e^{-a(\\frac{\\lambda}{100})^n}$') #Plotting curvefit T1
+plt.plot(nlpm_lin,T2_cf, label = 'FIT $T_{Al}$ : $e^{-a(\\frac{\\lambda}{100})^n}$') #Plotting curvefit T2
 plt.xlabel(" $\\lambda \\cdot n$ (in pm)") #Plotting the x-axis
 plt.ylabel("T (in %)") #Plotting the y-axis
 plt.legend()
 plt.grid()
 plt.show()
+
+plt.savefig('plot-3-4-transmissie.pdf')
