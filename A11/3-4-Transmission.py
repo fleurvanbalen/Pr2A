@@ -10,7 +10,7 @@ def TM(l,a,n):
     return np.exp(-a*(l/100)**n) *100
 
 ## Data
-os.chdir('/home/thomasbaks/Documents/GitHub/Pr2A/A11') #Changing the working directory
+# os.chdir('/home/thomasbaks/Documents/GitHub/Pr2A/A11') #Changing the working directory
 
 Data = pd.read_excel('Data folder/3-4/Transmission_values_no_Cu_Al.xlsx') #Fetching the Data
 
@@ -109,6 +109,7 @@ print("en_T_2_Al =", e2_n)
 c = a
 d = b
 
+print(nlpm_error)
 
 plt.close() #Closing the previous opend plot
 plt.rcParams['figure.dpi'] = 100

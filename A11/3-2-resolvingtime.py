@@ -40,6 +40,11 @@ R_lin = np.linspace(min(R),max(R))
 cf_r, covariance_r = curve_fit(r_func, R, f)
 r_cf = r_func(R_lin,cf_r[0])
 
+e1_alles = np.sqrt(abs(np.diag(covariance_r)))
+e1_T = e1_alles[0]
+print(e1_T)
+
+
 
 #cf_r2, covariance_r = curve_fit(r_func, R[4:], f[4:])
 #r_cf2 = r_func(R_lin,cf_r2[0])
